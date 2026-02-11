@@ -1,0 +1,71 @@
+{
+  "id": "discord-voice",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean"
+      },
+      "autoJoinChannels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "guildId": { "type": "string" },
+            "channelId": { "type": "string" }
+          },
+          "required": ["guildId", "channelId"]
+        }
+      },
+      "wake": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "words": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "stt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": ["whisper-local"]
+          },
+          "modelPath": { "type": "string" },
+          "binaryPath": { "type": "string" },
+          "modelSize": {
+            "type": "string",
+            "enum": ["tiny", "base", "small"]
+          },
+          "language": { "type": "string" }
+        }
+      },
+      "tts": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": ["openai", "elevenlabs"]
+          }
+        }
+      },
+      "session": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "maxDurationMinutes": { "type": "integer", "minimum": 1 },
+          "silenceThresholdMs": { "type": "integer", "minimum": 100 },
+          "vadEnergyThreshold": { "type": "number", "minimum": 0 }
+        }
+      }
+    }
+  }
+}
